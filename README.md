@@ -14,10 +14,10 @@
 
 Le but du jeu est à chaque fois de trouver le symbole commun entre 2 cartes. Il s'agit donc d'un jeu de rapidité et de réactivité.
 
+<p align="center">
 <img src="./images/similar.png" alt="symboles communs" style="zoom:67%;" />
-
-​								<u>exemple de 3 cartes et de leur symboles identiques associés</u>
-
+<u>exemple de 3 cartes et de leur symboles identiques associés</u>
+</p>
 
 
 Les caractéristiques de ce jeu font qu'on peut le modéliser sous la forme d'un **problème sous contraintes**. On choisit de le modéliser sous la forme d'un problème **SAT** (sous la fore de variables booléennes).
