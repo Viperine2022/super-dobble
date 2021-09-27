@@ -6,7 +6,7 @@
 
 
 
-<img src="./images/dobble.png" alt="image-20210926181710438" style="zoom:50%;" />
+<img src="./images/dobble.png" alt="dobble" style="zoom:50%;" />
 
 
 
@@ -14,7 +14,7 @@
 
 Le but du jeu est à chaque fois de trouver le symbole commun entre 2 cartes. Il s'agit donc d'un jeu de rapidité et de réactivité.
 
-<img src="C:\Users\benoi\AppData\Roaming\Typora\typora-user-images\image-20210926182541477.png" alt="image-20210926182541477" style="zoom:67%;" />
+<img src="./images/similar.png" alt="symboles communs" style="zoom:67%;" />
 
 ​								<u>exemple de 3 cartes et de leur symboles identiques associés</u>
 
