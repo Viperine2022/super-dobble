@@ -10,7 +10,7 @@
 
 
 
-**Dobble** est un jeu de société comprenant 55 cartes, avec 8 symboles par carte pour un total de 57 symboles différents. La particularité que deux cartes du jeu possède toujours exactement un symbole en commun.
+**Dobble** est un jeu de société comprenant 55 cartes, avec 8 symboles par carte pour un total de 57 symboles différents. Sa particularité est que deux cartes du jeu possèdent toujours exactement un symbole en commun. De cette particularité émane toute la complexité de ce jeu.
 
 Le but du jeu est à chaque fois de trouver le symbole commun entre 2 cartes. Il s'agit donc d'un jeu de rapidité et de réactivité.
 
