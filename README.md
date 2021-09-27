@@ -16,7 +16,7 @@ Le but du jeu est à chaque fois de trouver le symbole commun entre 2 cartes. Il
 
 <p align="center">
 <img src="./images/similar.png" alt="symboles communs" style="zoom:67%;" />
-<u>exemple de 3 cartes et de leur symboles identiques associés</u>
+<ins>Exemple de 3 cartes et de leur symbole commun associé</ins>
 </p>
 
 
