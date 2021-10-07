@@ -1,4 +1,4 @@
-package fr.n7.sat;
+package dobble;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,6 +93,9 @@ public class Dobble {
 	}
 
 	static void checkAndPrint(Solver solver) {
+		
+		System.out.println(solver.getStatistics());
+		
 		Status q = solver.check();
 		switch (q) {
 		case UNKNOWN:
@@ -113,7 +116,18 @@ public class Dobble {
 	}
 
 	public static void main(String[] args) {
-		Dobble dobble = new Dobble(20);
+		
+		// 10 cartes par défaut si l'utilisateur ne rentre pas un nombre spécifique
+		int nbCartes = 10;
+		try {
+			nbCartes = Integer.parseInt(args[0]);
+		} catch (Exception e) {
+			System.out.println("\n####################################\n"
+							 + " Usage : java Dobble.java nb_cartes"
+							 + "\n####################################\n");
+		}
+		
+		Dobble dobble = new Dobble(nbCartes);
 
 		long start = System.currentTimeMillis();
 		dobble.solveGame();
