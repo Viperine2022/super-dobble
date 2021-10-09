@@ -35,6 +35,14 @@ public class Dobble {
 				v[i][j] = context.mkBoolConst("v" + "_" + i + "_" + j);
 			}
 		}
+		
+		
+		
+		
+		
+		// On détermine certaines cartes du jeu
+		
+		
 
 		// On trouve exactement 8 symboles sur chaque carte
 		for (int i = 0; i < this.NB_CARTES; i++) {
@@ -48,7 +56,9 @@ public class Dobble {
 				ArrayList<BoolExpr> conjuncts = new ArrayList<>();
 				for (int k = 0; k < this.NB_SYMBOLES; k++) {
 					for (int p = 0; p < this.NB_SYMBOLES; p++) {
-						if (k == p) {
+						//if (k == p) {
+						if (k == p && (i<=19 || j<=19)) {
+							System.out.println("i = " + i + "; j = " + j);
 							BoolExpr SymbIdentiques = context.mkAnd(v[i][k], v[j][p]);
 							conjuncts.add(SymbIdentiques);
 						}
@@ -58,8 +68,13 @@ public class Dobble {
 				solver.add(exactlyOne(nbIdentiques));
 			}
 		}
-	}
+		
+		
 
+
+		
+	}
+	
 
 	/** Expression vraie ssi exactement une des exprs est vraie. */
 	private BoolExpr exactlyOne(BoolExpr... exprs) {
@@ -105,8 +120,8 @@ public class Dobble {
 			System.out.println("  SAT, model:\n" + solver.getModel());
 			break;
 		case UNSATISFIABLE:
-			System.out.println("UNSAT :'(");
-			// System.out.println(" UNSAT, proof:\n" + solver.getProof());
+			System.out.println("UNSAT :'( ");
+			//System.out.println(" UNSAT, proof:\n" + solver.getProof());
 			break;
 		}
 	}
