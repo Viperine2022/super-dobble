@@ -4,7 +4,7 @@
 
 3. Bonhomme
 
-4. Goutte d’eau
+4. GoutteDeau
 
 5. Clown
 
@@ -20,23 +20,23 @@
 
 11. Cadenas
 
-12. Araignée
+12. Araignee
 
 13. Coccinelle
 
-14. Toile d’araignée
+14. ToileAraignee
 
 15. Dinosaure
 
 16. Soleil
 
-17. Cœur
+17. Coeur
 
-18. Sens interdit
+18. SensInterdit
 
 19. Cactus
 
-20. Point d’interrogation
+20. Interrogation
 
 21. Lune
 
@@ -46,23 +46,23 @@
 
 24. Fleur
 
-25. Yin et yang
+25. YingYang
 
 26. Dobble
 
-27. Fantôme
+27. Fantome
 
 28. Bouche
 
-29. Chien jaune
+29. Chien
 
 30. Crayon
 
-31. Clef de sol
+31. ClefDeSol
 
 32. Cible
 
-33. Tête de mort
+33. TeteDeMort
 
 34. Bombe
 
@@ -74,40 +74,40 @@
 
 38. Chat
 
-39. Peinture verte
+39. PeintureVerte
 
 40. Voiture
 
-41. Marteau orange
+41. Marteau
 
-42. Trèfle à 4 feuille
+42. Trefle4Feuilles
 
 43. Carotte
 
-44. Lunette de soleil
+44. LunettesDeSoleil
 
 45. Ciseaux
 
-46. Feuille rouge
+46. Erable
 
-47. Point d’exclamation
+47.Exclamation
 
 48. Dragon
 
 49. Bougie
 
-50. Bonhomme de neige
+50. BonhommeDeNeige
 
-51. Glaçon
+51. Glacon
 
 52. Ancre
 
 53. Arbre
 
-54. Œil violet
+54. Oeil violet
 
-55. Petit cheval d’échec
+55. Chess
 
-56. Éclair
+56. Eclair
 
 57. Tortue
