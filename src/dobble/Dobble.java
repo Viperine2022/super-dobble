@@ -13,8 +13,8 @@ public class Dobble {
 
 	/** Le modèle du jeu de Dobble */
 	BoolExpr[][] v; // 1ère dimension : le numéro de chaque carte
-									// 2ème dimension : la possibilité de placer le symbole sur la carte
-									// v[i][j] = TRUE <=> sur la carte n°i on trouve le symbole j
+					// 2ème dimension : la possibilité de placer le symbole sur la carte
+					// v[i][j] = TRUE <=> sur la carte n°i on trouve le symbole j
 	HashMap<String, String> cfg;
 
 	Solver solver;
@@ -35,14 +35,6 @@ public class Dobble {
 				v[i][j] = context.mkBoolConst("v" + "_" + i + "_" + j);
 			}
 		}
-		
-		
-		
-		
-		
-		// On détermine certaines cartes du jeu
-		
-		
 
 		// On trouve exactement 8 symboles sur chaque carte
 		for (int i = 0; i < this.NB_CARTES; i++) {
@@ -56,9 +48,7 @@ public class Dobble {
 				ArrayList<BoolExpr> conjuncts = new ArrayList<>();
 				for (int k = 0; k < this.NB_SYMBOLES; k++) {
 					for (int p = 0; p < this.NB_SYMBOLES; p++) {
-						//if (k == p) {
-						if (k == p && (i<=19 || j<=19)) {
-							System.out.println("i = " + i + "; j = " + j);
+						if (k == p) {
 							BoolExpr SymbIdentiques = context.mkAnd(v[i][k], v[j][p]);
 							conjuncts.add(SymbIdentiques);
 						}
@@ -68,13 +58,7 @@ public class Dobble {
 				solver.add(exactlyOne(nbIdentiques));
 			}
 		}
-		
-		
-
-
-		
 	}
-	
 
 	/** Expression vraie ssi exactement une des exprs est vraie. */
 	private BoolExpr exactlyOne(BoolExpr... exprs) {
@@ -108,9 +92,9 @@ public class Dobble {
 	}
 
 	static void checkAndPrint(Solver solver) {
-		
+
 		System.out.println(solver.getStatistics());
-		
+
 		Status q = solver.check();
 		switch (q) {
 		case UNKNOWN:
@@ -121,7 +105,7 @@ public class Dobble {
 			break;
 		case UNSATISFIABLE:
 			System.out.println("UNSAT :'( ");
-			//System.out.println(" UNSAT, proof:\n" + solver.getProof());
+			// System.out.println(" UNSAT, proof:\n" + solver.getProof());
 			break;
 		}
 	}
@@ -131,17 +115,27 @@ public class Dobble {
 	}
 
 	public static void main(String[] args) {
-		
-		// 10 cartes par défaut si l'utilisateur ne rentre pas un nombre spécifique
-		int nbCartes = 10;
+		if (args.length < 1) {
+			System.out.println(""
+					+ "\n####################################\n" 
+					+ " Usage : java Dobble.java nb_cartes\n"
+					+ " Exemple : java Dobble.java 10"
+					+ "\n####################################\n");
+			System.exit(1);
+		}
+		int nbCartes = 0;
 		try {
 			nbCartes = Integer.parseInt(args[0]);
 		} catch (Exception e) {
-			System.out.println("\n####################################\n"
-							 + " Usage : java Dobble.java nb_cartes"
-							 + "\n####################################\n");
+			System.out.println(""
+					+ "\n####################################\n" 
+					+ " Usage : java Dobble.java nb_cartes\n"
+					+ " Exemple : java Dobble.java 10"
+					+ "\n####################################\n");
+			e.printStackTrace();
+			System.exit(1);
 		}
-		
+
 		Dobble dobble = new Dobble(nbCartes);
 
 		long start = System.currentTimeMillis();

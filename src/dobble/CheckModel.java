@@ -71,12 +71,10 @@ public class CheckModel {
 			}
 			matrix = matrix + "\n";
 		}
-		System.out.println(matrix);
-
+		System.out.println("\n" + matrix);
 	}
 
 	public static void main(String[] args) {
-		
 		if (args.length != 2) {
 			System.out.println(""
 					+ "\n################################################\n "
@@ -85,7 +83,6 @@ public class CheckModel {
 					+ "\n################################################\n");
 			System.exit(1);
 		}
-		
 		try {
 			CheckModel cm = new CheckModel(Integer.parseInt(args[1]));
 			cm.readOutput(args[0]);
@@ -98,7 +95,5 @@ public class CheckModel {
 					+ "\n################################################\n");
 			e.printStackTrace();
 		}
-
 	}
-
 }
