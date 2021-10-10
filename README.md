@@ -20,7 +20,7 @@ Le but du jeu est à chaque fois de trouver le symbole commun entre 2 cartes. Il
 </p>
 
 
-Les caractéristiques de ce jeu font qu'on peut le modéliser sous la forme d'un **problème sous contraintes**. On choisit de le modéliser sous la forme d'un problème **SAT** (sous la fore de variables booléennes).
+Les caractéristiques de ce jeu font qu'on peut le modéliser sous la forme d'un **problème sous contraintes**. On choisit de le modéliser sous la forme d'un problème **SAT** (boolean satisfiability problem).
 
 Le jeu se modélise de la façon suivante : 
 
@@ -46,7 +46,7 @@ Le jeu se modélise de la façon suivante :
 
 ### Exemples
 
-- ``./run.sh 2 N`` permet d'afficher les cartes générées, avec les 8 numéros de symbole sur sur chaque carte, étant donné que 1 ligne ⇔ 1 carte
+- ``./run.sh 2 N`` permet d'afficher les cartes générées, avec les 8 numéros de symbole sur chaque carte, étant donné que 1 ligne ⇔ 1 carte
 
 ```
 $ ./run.sh 2 10
@@ -90,7 +90,7 @@ Pomme Dinosaure Coeur PeintureVerte  Erable Bougie Eclair Tortue
 
 
 
-- ``./run.sh 4 N`` permet de **vérifier la bonne modélisation du jeu**. En effet, on affiche une matrice de correspondance *carte/symbole*. M\[i][j] correspond au nombre de symboles communs entre les cartes i et j. Pour que le jeu soit correct, la matrice ne doit avoir que des 8 sur la diagonale, et des 1 partout autre part.
+- ``./run.sh 4 N`` permet de **vérifier la bonne modélisation du jeu**. En effet, on affiche une matrice de **confusion** (ou correspondance *carte/symbole*). M\[i][j] correspond au nombre de symboles communs entre les cartes i et j. Pour que le jeu soit correct, la matrice ne doit avoir que des 8 sur la diagonale, et des 1 partout autre part.
 
 ````
 ./run.sh 4 10
