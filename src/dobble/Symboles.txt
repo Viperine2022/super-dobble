@@ -90,7 +90,7 @@
 
 46. Erable
 
-47.Exclamation
+47. Exclamation
 
 48. Dragon
 
@@ -104,7 +104,7 @@
 
 53. Arbre
 
-54. Oeil violet
+54. OeilViolet
 
 55. Chess
 
