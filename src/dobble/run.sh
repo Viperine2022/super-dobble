@@ -34,6 +34,8 @@ case $1 in
   5) # Affichage n°1) puis génération du code java pour affecter les cartes déterminées au modèle
      # EDIT : inutile finalement pour résoudre de plus grandes instances du problème.
   ./run.sh 1 $nbCartes | awk '{print "solver.add(context.mkAnd(v[" $1 "][" $2 "]));" }';;
+  6) # On nie la solution en cours
+  output=$(./run.sh 1 $nbCartes | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkNot(context.mkAnd(${output%?})));" > outputNOT.txt && addLines=$(cat outputNOT.txt) && sed -i "482i $addLines" Dobble.java;;
   *)
 esac
 

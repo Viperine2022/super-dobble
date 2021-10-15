@@ -45,7 +45,7 @@ public class Dobble {
 		// deux cartes du jeu possèdent exactement un symbole en commun
 		for (int i = 0; i < this.NB_CARTES; i++) {
 			for (int j = i + 1; j < this.NB_CARTES; j++) {
-				if (i > 37 || j > 37) {
+				//if (i > 37 || j > 37) {
 					ArrayList<BoolExpr> conjuncts = new ArrayList<>();
 					for (int k = 0; k < this.NB_SYMBOLES; k++) {
 						for (int p = 0; p < this.NB_SYMBOLES; p++) {
@@ -57,13 +57,13 @@ public class Dobble {
 					}
 					BoolExpr[] nbIdentiques = conjuncts.stream().toArray(BoolExpr[]::new);
 					solver.add(exactlyOne(nbIdentiques));
-				}
+				//}
 			}
 		}
 
 		// Jeu Dobble
 
-		
+		/**
 		solver.add(context.mkAnd(v[0][1]));
 		solver.add(context.mkAnd(v[0][15]));
 		solver.add(context.mkAnd(v[0][27]));
@@ -472,11 +472,16 @@ public class Dobble {
 		solver.add(context.mkAnd(v[50][38]));
 		solver.add(context.mkAnd(v[50][46]));
 		solver.add(context.mkAnd(v[50][56]));
-
-
-
+		*/
 		
 		
+		
+		
+		
+		// Nier la solution en crous pour en obtenir une nouvelle
+		
+		
+				
 		
 	}
 
@@ -513,7 +518,16 @@ public class Dobble {
 
 	static void checkAndPrint(Solver solver) {
 
-		System.out.println(solver.getStatistics());
+		System.out.println("\n\n*** NumAssertions : " + solver.getNumAssertions());
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//System.out.println("\n\n*** NumScopes : " + solver.getNumScopes());
+		//System.out.println("\n\n*** Statistics : " + solver.getStatistics());
 
 		Status q = solver.check();
 		switch (q) {
