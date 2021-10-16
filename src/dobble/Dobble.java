@@ -10,6 +10,8 @@ public class Dobble {
 	public final int NB_SYMBOLES = 57;
 	/** Nombre de cartes choisi plus tard (55 dans le jeu complet) */
 	public final int NB_CARTES;
+	/** Nombre de cartes déjà déterminées par le modèle  NE PAS MODIFIER dans la ligne ce qui suit ce qui se trouve avant le "=" */
+    public final int NB_CARTES_DEJA_GENEREES = 0;
 
 	/** Le modèle du jeu de Dobble */
 	BoolExpr[][] v; // 1ère dimension : le numéro de chaque carte
@@ -45,7 +47,13 @@ public class Dobble {
 		// deux cartes du jeu possèdent exactement un symbole en commun
 		for (int i = 0; i < this.NB_CARTES; i++) {
 			for (int j = i + 1; j < this.NB_CARTES; j++) {
-				//if (i > 37 || j > 37) {
+				/** Si les cartes 0..N ont déjà été générées, la contrainte
+				 *     "1 seul symbole commun entre toutes les cartes du modèle", devient
+				 *  -> "1 seul symbole commun entre les cartes ajoutées et les anciennes"
+				 *  
+				 *  Donc le problème diminue en complexité.
+				 */
+				if (i >= NB_CARTES_DEJA_GENEREES || j >= NB_CARTES_DEJA_GENEREES) {
 					ArrayList<BoolExpr> conjuncts = new ArrayList<>();
 					for (int k = 0; k < this.NB_SYMBOLES; k++) {
 						for (int p = 0; p < this.NB_SYMBOLES; p++) {
@@ -57,12 +65,25 @@ public class Dobble {
 					}
 					BoolExpr[] nbIdentiques = conjuncts.stream().toArray(BoolExpr[]::new);
 					solver.add(exactlyOne(nbIdentiques));
-				//}
+				}
 			}
 		}
 
-		// Jeu Dobble
 
+		
+		
+		// Determiner les N cartes du modele    <--    (ne PAS modifier ce commentaire)		
+		
+		
+		
+		
+		// Nier la solution en cours pour en obtenir une nouvelle    <--    (ne PAS modifier ce commentaire)
+		
+
+
+
+		// Jeu Dobble
+		
 		/**
 		solver.add(context.mkAnd(v[0][1]));
 		solver.add(context.mkAnd(v[0][15]));
@@ -473,16 +494,9 @@ public class Dobble {
 		solver.add(context.mkAnd(v[50][46]));
 		solver.add(context.mkAnd(v[50][56]));
 		*/
-		
-		
-		
-		
-		
-		// Nier la solution en crous pour en obtenir une nouvelle
-		
-		
-				
-		
+
+
+
 	}
 
 	/** Expression vraie ssi exactement une des exprs est vraie. */
