@@ -31,12 +31,16 @@ case $1 in
 
   4) # Affichage de la matrice de correspondance symboles-communs / cartes
   ./run.sh 2 $nbCartes > output.txt && java CheckModel.java output.txt $nbCartes;;
+
   5) # Affichage n°1) puis génération du code java pour affecter les cartes déterminées au modèle
      # EDIT : inutile finalement pour résoudre de plus grandes instances du problème.
-  ./run.sh 1 $nbCartes | awk '{print "solver.add(context.mkAnd(v[" $1 "][" $2 "]));" }';;
+  output=$(./run.sh 1 $nbCartes | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkAnd(${output%?}));" > outputYES.txt && addCards=$(cat outputYES.txt) && sed -i -e "486 i $(echo $addCards)" Dobble.java;;
+
   6) # On nie la solution en cours
-  output=$(./run.sh 1 $nbCartes | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkNot(context.mkAnd(${output%?})));" > outputNOT.txt && addLines=$(cat outputNOT.txt) && sed -i "482i $addLines" Dobble.java;;
+  output=$(./run.sh 1 $nbCartes | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkNot(context.mkAnd(${output%?})));" > outputNOT.txt && addLines=$(cat outputNOT.txt) && sed -i -e "491 i $(echo $addLines)" Dobble.java;;
   *)
 esac
+
+
 
 
