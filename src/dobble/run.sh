@@ -41,9 +41,9 @@ case $1 in
   7) # Reset le jeu Dobble <=> NB_CARTES_DEJA_GENEREES = 0 et pas de solution niée
   sed -i "s/.*public final int NB_CARTES_DEJA_GENEREES.*/    public final int NB_CARTES_DEJA_GENEREES = 0;/" Dobble.java;;
 
-*)
+*) # Afficher l'erreur
+  echo "./run.sh N avec N de 0 à 7";;
 esac
-
 
 
 
