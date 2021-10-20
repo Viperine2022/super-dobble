@@ -1,15 +1,10 @@
 #!/bin/bash
 
-##bool=1              # 1 <=> FALSE et à <=> TRUE
-##while [ ${bool} -lt 100 ]
-##do
-##  echo "bool : ${bool}"
-##  bool=$((${bool}+1))
-##done
-
-
-
-
+#############################################################################################
+#   Script qui cherche un jeu de 20 à 30 cartes "optimisé", c'est à dire, un set qui        #
+#   permet de créer un jeu plus grand. Ceci est fait en injectant en code java la           #
+#   négation de chaque modèle trouvé, mais qui ne permet pas d'obtenir un jeu plus grand    #
+#############################################################################################
 
 
 SAT_PROBLEM=1              # 1 <=> FALSE et à <=> TRUE
@@ -19,11 +14,11 @@ cpt=0
 while [ ${SAT_PROBLEM} -eq 1 ]
 do
 
-  # 1. Générer un jeu de 25 cartes et l'injecter dans le modèle
-  ./run.sh 5 25
+  # 1. Générer un jeu de 20 cartes et l'injecter dans le modèle
+  ./run.sh 5 20
 
-  # 2. Essayer de générer un jeu de 26 cartes
-  ./run.sh 0 26 | grep -q "SAT, model:" && test $(echo $?) -eq 0 && SAT_PROBLEM=0
+  # 2. Essayer de générer un jeu de plus de cartes
+  ./run.sh 0 25 | grep -q "SAT, model:" && test $(echo $?) -eq 0 && SAT_PROBLEM=0
   if [ "${SAT_PROBLEM}" -ne 0 ]; then
 
   lineToAdd=$(grep -n "Determiner les N" Dobble.java | cut -d ":" -f 1)
