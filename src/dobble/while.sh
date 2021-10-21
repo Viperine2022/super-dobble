@@ -33,7 +33,9 @@ do
   ./run.sh 5 $1
 
   # 2. Essayer de générer un jeu de $2 cartes (plus de cartes, $2 > $1)
-  ./run.sh 0 $2 | grep -q "SAT, model:" && test $(echo $?) -eq 0 && SAT_PROBLEM=0 ############# ON VERIFIE ICI l'ECHEC avec test $(echo $?) -eq 0 && SAT_PROBLEM=0
+  ./run.sh 0 $2 | grep -q "SAT, model:" && test $(echo $?) -eq 0 && SAT_PROBLEM=0
+
+  # SI ON N'A PAS PU GENERER UN JEU DE $2 CARTES ( SAT_PROBLEM = 1 )
   if [ "${SAT_PROBLEM}" -ne 0 ]; then
 
     lineToAdd=$(($(grep -n "Determiner les N" Dobble.java | cut -d ":" -f 1)+1))
@@ -70,6 +72,24 @@ do
     end=$(date +%s)
     echo "Fail n°${cpt}, in $((${end} - ${start})) seconds"
   fi
+
+  # SI ON A PU GENERER UN JEU DE $2 CARTES ( SAT_PROBLEM = 0 )
+  echo "Succes : generation d'un jeu de $2 cartes"
+
+  # On remet la valeur de SAT_PROBLEM à 1 par défaut
+  SAT_PROBLEM=1
+  ./run.sh 0 $(($2+2)) | grep -q "SAT, model:" && test $(echo $?) -eq 0 && SAT_PROBLEM=0
+
+  if [ "${SAT_PROBLEM}" -ne 0 ]; then
+
+    echo "Echec de la generation d'un jeu de $(($2+2)) cartes, on reste dans la boucle"
+    # On commente le modèle
+    lineToAdd=$(($(grep -n "Determiner les N" Dobble.java | cut -d ":" -f 1)+1))
+    replace=$(sed -n ${lineToAdd}p Dobble.java | awk -F "(" '{print $1 "(context.mkNot(" $2 "(" $3 }' | head -n 1 | awk -F ")" '{print $1 ")))" $2 $3 }')
+    sed -i "${lineToAdd}s/^.*$/${replace}/" Dobble.java
+
+  fi
+
 done
 
 echo "SUCCESS"
@@ -77,6 +97,6 @@ echo "SUCCESS"
 ./run.sh 7
 
 # Message audio de sortie
-spd-say "I found the solution"
+spd-say "I found a solution for $(($2 + 2)) cards"
 
 
