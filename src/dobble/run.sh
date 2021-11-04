@@ -38,10 +38,14 @@ case $1 in
 
   6) # Nier la solution en cours
   output=$(./run.sh 1 $nbCartes | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkNot(context.mkAnd(${output%?})));" > outputNOT.txt && addLines=$(cat outputNOT.txt) && sed -i "/.*Nier la solution en cours pour en obtenir une nouvelle.*/a $(echo $addLines)" Dobble.java;;
+
   7) # Reset le jeu Dobble <=> NB_CARTES_DEJA_GENEREES = 0 et pas de solution niée
   sed -i "s/.*public final int NB_CARTES_DEJA_GENEREES.*/    public final int NB_CARTES_DEJA_GENEREES = 0;/" Dobble.java;;
 
-*) # Afficher l'erreur
+  8) # Ajouter les 20 cartes du jeu réel
+  nbCartes=20 && output=$(cat jeuReel.txt | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkAnd(${output%?}));" > outputYES.txt && addCards=$(cat outputYES.txt) && sed -i "/.*Determiner les N cartes du modele.*/a $(echo $addCards)" Dobble.java && sed -i "s/.*public final int NB_CARTES_DEJA_GENEREES.*/    public final int NB_CARTES_DEJA_GENEREES = ${nbCartes};/" Dobble.java;;
+
+  *) # Afficher l'erreur
   echo "./run.sh N avec N de 0 à 7";;
 esac
 
