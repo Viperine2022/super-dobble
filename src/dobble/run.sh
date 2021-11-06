@@ -46,7 +46,7 @@ case $1 in
   nbCartes=20 && output=$(cat jeuReel.txt | awk '{print "v[" $1 "][" $2 "],"}') && echo -n "solver.add(context.mkAnd(${output%?}));" > outputYES.txt && addCards=$(cat outputYES.txt) && sed -i "/.*Determiner les N cartes du modele.*/a $(echo $addCards)" Dobble.java && sed -i "s/.*public final int NB_CARTES_DEJA_GENEREES.*/    public final int NB_CARTES_DEJA_GENEREES = ${nbCartes};/" Dobble.java;;
 
   *) # Afficher l'erreur
-  echo "./run.sh N avec N de 0 à 7";;
+  echo "./run.sh N avec N de 0 à 8";;
 esac
 
 
